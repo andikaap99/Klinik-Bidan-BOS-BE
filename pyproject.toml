@@ -42,6 +42,11 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 
+[tool.ruff.lint.per-file-ignores]
+# File migrasi hasil autogenerate sering melebihi batas & punya header standar
+# bawaan Alembic; tidak perlu dipaksa rapi.
+"alembic/versions/*" = ["E501", "I001"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
