@@ -1,0 +1,28 @@
+# Rahasia & artefak lokal jangan masuk image build context
+.env
+.env.*
+
+# Python artefak
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Repo/tooling yang tidak dibutuhkan image
+.git/
+.gitignore
+.agents/
+.schema/
+tests/
+compose.yaml
+docker-compose*.yml
+Dockerfile
+.dockerignore
+README.md
