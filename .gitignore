@@ -1,0 +1,35 @@
+# Local env & secrets
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+coverage/
+.coverage
+htmlcov/
+dist/
+build/
+
+# uv
+# uv.lock tetap di-commit (reproducibility); cukup abaikan artefak lain
+
+# Node/tooling lokal
+node_modules/
+
+# Editor
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Agentic
+.agents
+.agents/
+agents
+AGENTS.md

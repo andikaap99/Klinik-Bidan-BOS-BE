@@ -1,0 +1,51 @@
+[project]
+name = "be-dss-klinik"
+version = "0.1.0"
+description = "Backend REST API untuk DSS Klinik Bersalin (BidanCare) — FastAPI + PostgreSQL"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # FastAPI + CLI (fastapi dev / run), uvicorn[standard], pydantic, dll.
+    "fastapi[standard]>=0.115",
+    # ORM async untuk API (SQLAlchemy 2.0 async + asyncpg)
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29",
+    # Sync driver untuk cron job forecast & Alembic (keputusan di 03_decision_log.md)
+    "psycopg[binary]>=3.2",
+    # Migrasi skema
+    "alembic>=1.13",
+    # Settings dari .env
+    "pydantic-settings>=2.2",
+    # Auth
+    "pyjwt>=2.8",
+    "pwdlib[argon2]>=0.2",
+    # HTTP client (Insight Explainer -> LLM, dan testing)
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+# Proyek ini dijalankan langsung dari direktori kerja (uv run fastapi dev ...),
+# tidak di-install sebagai package. uv.lock tetap di-commit.
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["error::DeprecationWarning"]
+
+[tool.fastapi]
+entrypoint = "app.main:app"
