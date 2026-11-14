@@ -20,7 +20,8 @@ class Service(Base):
     __tablename__ = "services"
     __table_args__ = (
         UniqueConstraint("kode", name="services_kode_uq"),
-        CheckConstraint("avg_duration_minutes > 0", name="services_duration_positive"),
+        # 0 dibolehkan: Ibu Bersalin belum punya durasi (Jira 2026-11-14)
+        CheckConstraint("avg_duration_minutes >= 0", name="services_duration_positive"),
     )
 
     id: Mapped[int] = mapped_column(SmallInteger, Identity(always=True), primary_key=True)
